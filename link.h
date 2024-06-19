@@ -3,6 +3,7 @@
 
 #include "packet.h"
 #include <cstdlib>
+#include <iostream>
 
 class Node;
 
@@ -19,6 +20,9 @@ private:
   Node *other(const Node *node) const {
     return node == nodeA_ ? nodeB_ : nodeA_;
   }
+
+public:
+  void onReceive(Node* sender, Packet* packet);
 };
 
 #endif

@@ -20,7 +20,17 @@ private:
 
 public:
   // 메시지를 전송한다
-  void send(std::string message);
+  void send(std::string message) {
+    // 패킷 만들기
+    Packet *packet = new Packet(host_->address(), destAddress_, port_, destPort_, message);
+    host_->send(packet);
+  }
+
+  void onReceive(Packet *packet) override {
+    // MessageService: received "Hello, world!" from 1:3000
+    std::cout << "MessageService: received \"" << packet->dataString() << "\" from "
+          << packet->srcAddress().toString() << ":" << packet->srcPort() << std::endl;
+  }
 };
 
 #endif

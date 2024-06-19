@@ -16,6 +16,10 @@ protected:
   short port_;
 
   Service(Host *host, int port) : host_(host), port_(port) {}
+
+public:
+  short port() { return port_; }
+  virtual void onReceive(Packet *packet) = 0;
 };
 
 #endif
